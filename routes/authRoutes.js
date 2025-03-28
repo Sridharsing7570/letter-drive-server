@@ -30,7 +30,7 @@ router.get(
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
-            sameSite:"lax",
+            sameSite: "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
@@ -48,6 +48,8 @@ router.get("/logout", (req, res) => {
 // Get current user
 router.get("/current-user", (req, res) => {
     const token = req.cookies.token;
+
+    console.log("token", token);
 
     if (!token) {
         return res.status(401).json({ message: "Not authenticated" });
